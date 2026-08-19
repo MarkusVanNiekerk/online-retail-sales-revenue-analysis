@@ -40,7 +40,7 @@ Real transactions from a UK-based and registered non-store online retailer, 01/1
 
 ## Full Case Study
 
-The complete, detailed process log — every query, finding, and decision — lives in the notebook in this repo. A compressed summary is also available here: **[Full Case Study](#)** 
+The complete, detailed process log — every query, finding, and decision — lives in the notebook in this repo. A compressed summary is also available here: **[Full Case Study](online-retail-analysis-log.ipynb)** 
 
 ## Dashboard
 
