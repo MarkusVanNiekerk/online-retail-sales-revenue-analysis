@@ -1,6 +1,6 @@
 # Online Retail II — Sales & Revenue Performance Analysis
 
-Which products and regions drive the most revenue for a real UK-based online retailer — and how much of that revenue is being eroded by order cancellations? A multi-stage BigQuery SQL analysis of over 1 million real transactions, visualized in a Looker Studio dashboard.
+Which products and regions drive the most revenue for a real UK-based online retailer — and how much of that revenue is being eroded by order cancellations? A multi-stage BigQuery SQL analysis of over 1 million real transactions, deliberately visualized in **two separate dashboard tools — Looker Studio and Power BI** — built on the same underlying data to demonstrate that the analysis, not the tool, is the real skill.
 
 ## Business Question
 
@@ -15,9 +15,10 @@ Which products and regions drive the most revenue for this online retailer, how 
 
 ## Tools & Skills Demonstrated
 
+- **Cross-platform BI versatility, by design.** After completing the SQL/data-modeling work in BigQuery, the same five validated Views were connected to **both Looker Studio and Power BI**, and the full dashboard — same charts, same findings — was rebuilt independently in each. This wasn't an afterthought; it was a deliberate choice to show the underlying data work is portable, and that tool choice doesn't limit the analysis.
 - **BigQuery SQL** — CTEs, window functions (`ROW_NUMBER() OVER PARTITION BY`, `COUNT(*) OVER`), `QUALIFY`, `REGEXP_CONTAINS`, conditional aggregation, self-joins with `EXISTS`, and building layered Views on top of a cleaned base table
 - **A flag-column data cleaning design**, rather than hard row exclusions — every anomaly (cancellations, bad-debt write-offs, non-product codes, duplicates, unmappable countries) is preserved and labeled, keeping the cleaned table reusable across different future questions instead of a one-off filtered dataset
-- **Looker Studio** for the dashboard layer, connected directly to validated BigQuery Views
+- **Looker Studio & Power BI Desktop**, both connected directly to the same validated BigQuery Views — no duplicated logic, no re-derived numbers
 - **Google Sheets**, used to independently cross-validate BigQuery's null/negative/zero-value counts against the raw source file — confirming the cleaning pipeline introduced no data loss
 - Real bug-hunting and correction, documented in full: a `NULL`-propagation bug in a derived flag (fixed with `COALESCE`), an incorrect regex whitelist that let non-product codes slip into a "top products" ranking, and a silent StockCode case-sensitivity bug that was splitting a single product's revenue across two separate rows
 
@@ -34,16 +35,21 @@ Real transactions from a UK-based and registered non-store online retailer, 01/1
 ```
 ├── online-retail-analysis-log.ipynb   # Full process log — Ask, Prepare, Process, Analyze, Share
 ├── dashboard-screenshot.png           # Looker Studio dashboard
+├── dashboard-powerbi.png              # Power BI dashboard
 ├── data/                              # Source CSVs (see Data Source above)
 └── README.md
 ```
 
 ## Full Case Study
 
-The complete, detailed process log — every query, finding, and decision — lives in the notebook in this repo. A compressed summary is also available here: **[Full Case Study](#)** *(add your Notion link)*
+The complete, detailed process log — every query, finding, and decision — lives in the notebook in this repo: **[Full Case Study](online-retail-analysis-log.ipynb)**
 
-## Dashboard
+## Dashboards
 
+Same data, same findings, two tools — built deliberately to demonstrate that the analytical work underneath is tool-agnostic.
+
+**Looker Studio**
 ![Looker Studio dashboard](dashboard-screenshot.png)
 
-*(Save your dashboard screenshot as `dashboard-screenshot.png` in this repo's root folder — this line will render it automatically.)*
+**Power BI**
+![Power BI dashboard](dashboard-powerbi.png)
